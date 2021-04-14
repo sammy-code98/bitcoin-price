@@ -1,20 +1,36 @@
-import React from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function History(props) {
-    return (
-        <div>
-            <p>History</p>
-            {history}
-        </div>
-    )
+function History() {
+  const [history, setHistory] = useState("Disclaimer loading...");
+  useEffect(() => {
+    const urlApi = `https://api.coindesk.com/v1/bpi/currentprice.json`;
+    fetch(urlApi)
+      .then((res) => res.json())
+      .then((data) => {
+        setHistory(data.disclaimer);
+      });
+  });
+  const [mydate, setDate] = useState("Date loading....");
+
+  useEffect(() => {
+    const myApi = `https://api.coindesk.com/v1/bpi/currentprice.json`;
+    fetch(myApi)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setDate(data.time.updated);
+      });
+  });
+
+  return (
+    <div>
+      <h3 className="mt-2">History</h3>
+    
+
+      <p>{history}</p>
+      <p>Last Updated : {mydate}</p>
+    </div>
+  );
 }
-const history = axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-    .then(function (response) {
-        console.log(response);
-        bpi: response.data
 
-        // console.log(bpi);
-    })
-
-export default History
+export default History;

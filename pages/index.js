@@ -8,10 +8,12 @@ function Home(props) {
   return (
 
     <Layout>
-      <h1>Home</h1>
+      <h1>{props.chartname}</h1>
       <p>Check current bitcoin rate</p>
 
       <Prices bpi={props.bpi} />
+
+      <History/>
 
 
     </Layout>
@@ -27,7 +29,8 @@ Home.getInitialProps = async function () {
   const data = await res.json()
   // console.log(data);
   return {
-    bpi: data.bpi
+    bpi: data.bpi,
+    chartname: data.chartName
   }
 
 }

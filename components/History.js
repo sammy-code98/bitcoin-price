@@ -24,11 +24,11 @@ function History() {
 
   return (
     <div>
-      <h3 className="mt-2">History</h3>
+      <h3 className="mt-2 text-muted">History</h3>
     
 
-      <p>{history}</p>
-      <p>Last Updated : {mydate}</p>
+      <p className="lead">{history}</p>
+      <p className="lead">Last Updated : {mydate}</p>
     </div>
   );
 }
